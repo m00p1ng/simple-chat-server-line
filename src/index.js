@@ -37,9 +37,11 @@ app.get("/verify", (req, res) => {
 
 app.post("/bot", (req, res) => {
   if(Object.keys(req.body) > 0) {
+    let result = "";
     for(event in req.body.events) {
-      console.log(event)
+      result = `${result}\r\n`;
     }
+    res.send(result)
   } else {
     res.send("body is empty.")
   }
