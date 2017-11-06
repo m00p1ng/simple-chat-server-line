@@ -18,6 +18,8 @@ const io = require('socket.io').listen(server)
 
 io.on('connection', (socket) => {
   socket.on('newEvents', (events) => {
+    io.emit('newEvents', event)
+    console.log(">>> From SOCKET.io: newEvents <<<")
     console.log(JSON.stringify(events, null, 2))
   })
 });
