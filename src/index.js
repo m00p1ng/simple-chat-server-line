@@ -16,6 +16,10 @@ app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello world");
+})
+
 app.get("/verify", (req, res) => {
   let url = "https://api.line.me/v1/oauth/verify";
   axios.get(url, {
