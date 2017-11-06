@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const cors = require('cors')
 
 const PORT = process.env.PORT || 3500;
 
 const app = express();
+app.use(cors())
+app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -18,7 +20,7 @@ const io = require('socket.io').listen(server)
 
 io.on('connection', (socket) => {
   socket.on('newEvents', (events) => {
-    io.emit('newEvents', event)
+    io.emit('newEvents', events)
     console.log(">>> From SOCKET.io: newEvents <<<")
     console.log(JSON.stringify(events, null, 2))
   })
