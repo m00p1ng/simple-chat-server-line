@@ -10,7 +10,8 @@ app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const webhook = require('./webhook')
+const webhook = require('./webhook');
+const pushMessage = require("./pushMessage");
 
 const server = app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
@@ -30,4 +31,5 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 })
 
-webhook(app, server)
+webhook(app, server);
+pushMessage(app);
