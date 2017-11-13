@@ -12,11 +12,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const webhook = require('./webhook');
 
-const server = app.listen(PORT, () => {
+let server = app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
 
-const io = require('socket.io').listen(server)
+const io = require('socket.io').listen(server);
 
 io.on('connection', (socket) => {
   socket.on('newEvents', (events) => {
@@ -30,4 +30,4 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 })
 
-webhook(app, server);
+webhook(app);
